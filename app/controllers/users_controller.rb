@@ -97,4 +97,15 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+  def subscriptions
+    logger.debug("subscribe")
+    @user = User.find(:user_id)
+
+    respond_to do |format|
+      format.html { redirect_to(request.referer, :notice => 'Added subscription.') }
+    end
+  end
+
 end

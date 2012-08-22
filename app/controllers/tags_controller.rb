@@ -32,10 +32,7 @@ class TagsController < ApplicationController
     @tag = Tag.find(params[:id])
 
     @user.subscriptions << @tag
-    logger.debug("subscribe")
-
     @tag.subscribers << @user
-    logger.debug("subscribe")
 
     respond_to do |format|
       format.html { redirect_to(request.referer, :notice => 'Added subscription.') }

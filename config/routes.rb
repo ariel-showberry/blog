@@ -44,7 +44,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :posts, :has_many => :tags
   #map.resources :posts do |assemblies| assemblies.resources :tags end
-  map.resources :users, :has_many => :posts
+  map.resources :users, :has_many => :posts do |user|
+    user.resources :tags, :as=>'subscriptions', :only=>:index
+  end
 
 
   map.root :controller => "posts"
@@ -55,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
   map.subscribe 'tags/:id/subscribe', :controller => 'tags', :action => 'subscribe'
+#  map.subscriptions 'users/:id/subscriptions', :controller => 'tags', :action => 'index', :params => 'subscriptions'
 
 
 #map.resources :users do |user|
