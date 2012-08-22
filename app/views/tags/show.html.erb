@@ -1,0 +1,23 @@
+<h2> Listing posts for tag <%=h @tag.name%> </h2>
+<table>
+  <tr>
+    <th>title</th>
+    <th>author</th>
+  </tr>
+
+
+<% @tag.posts.each do |post| %>
+  <tr>
+    <td><%=h post[:title] %></td>
+    <td><%=h post.author.name %></td>
+    
+    <td><%= link_to 'Show posts', post %></td>
+    <% if session[:user_id] %>
+    <td><%= link_to 'Subscribe', { :action => "subscribe" } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'List of posts', posts_path %>

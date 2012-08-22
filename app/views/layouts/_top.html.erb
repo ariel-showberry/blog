@@ -1,0 +1,17 @@
+<p align="right">
+<% session_user_id = session[:user_id] %>
+<% if session_user_id %>
+  Welcome <%= session_user_id %> ,    <%= link_to 'Logout', "/logout" %>
+<% else %>
+  <% form_tag("/login", {:method => "get"}) do %>
+    <p align="right">
+      <%= label_tag(:login, "Login") %>
+      <%= text_field_tag(:login) %>
+      <%= label_tag(:password, "Password") %>
+      <%= text_field_tag(:password) %>
+      <%= submit_tag("Sign in") %>
+      <%= link_to 'Register', new_user_path %>
+    </p>
+   <% end %>
+<% end %>
+</p>

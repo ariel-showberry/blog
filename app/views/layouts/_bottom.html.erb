@@ -1,0 +1,14 @@
+<p align="left">
+
+
+
+      <%= link_to 'List posts', posts_path %>
+      <%= link_to 'List tags', tags_path %>
+
+<% if session[:user_id] %>
+  <%  @user = User.find(:first, :conditions => ['login = ?',session[:user_id]]) %>
+
+  <%= link_to 'My posts', posts_path  %>
+  <%= link_to 'My subscriptions', "/logout" %>
+<% end %>
+    </p>
